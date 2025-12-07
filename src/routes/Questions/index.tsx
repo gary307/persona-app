@@ -69,7 +69,7 @@ function RouteComponent() {
                                         <fieldset className="flex flex-col">
                                             {currentQuestion.question.options.map((option, index) => {
                                                 return (
-                                                    <span key={`option-${index}`} className="mb-2">
+                                                    <span key={`option-${index}`} className="mb-5" onClick={() => field.handleChange(option.value)}>
                                                         <input
                                                             type="radio"
                                                             required
