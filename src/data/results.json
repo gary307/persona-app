@@ -1,19 +1,23 @@
 {
 "results": [{
     "persona": "innovate",
-    "title": "AI innovative"
+    "title": "AI innovative",
+    "image": "/innovator.png"
 },
 {
     "persona": "automator",
-    "title": "AI automator"
+    "title": "AI automator",
+    "image": "/innovator.png"
 },
 {
     "persona": "creator",
-    "title": "Creative"
+    "title": "Creative",
+    "image": "/innovator.png"
 },
 {
     "persona": "validator",
-    "title": "AI validator"
+    "title": "AI validator",
+    "image": "/innovator.png"
 }
 ]   
 }

@@ -1,4 +1,4 @@
-import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
 import questions from '../../data/questions.json'
 import results from '../../data/results.json'
@@ -40,15 +40,11 @@ function RouteComponent() {
 
 const result = results.results.find(r => r.persona === highestGroup);
 
-
     return (
-        <div className="max-w-[700px] m-auto mt-[100px]">
+        <div className="height-screen flex items-center max-h-[100vh] bg-black bg-[url(/background-persona.png)] bg-no-repeat bg-cover h-screen">
+        <div className="max-w-[700px] m-auto p-[20px] border-solid border-black border-2 rounded-lg  align-middle bg-white">
             <form
-                onSubmit={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    form.handleSubmit()
-                }}
+
             >
                 {!showResults && (
                     <span>
@@ -106,17 +102,16 @@ const result = results.results.find(r => r.persona === highestGroup);
 
                 {showResults && (
                     <div>
-                        <h1>Your Results</h1>
-                        <p>Based on your answers, your AI persona is:</p>
-                        <h2>{result.title}</h2>
-                        <p>
-                            You have a knack for thinking outside the box and coming up with
-                            creative solutions to complex problems. Your innovative mindset drives
-                            you to explore new ideas and challenge the status quo.
-                        </p>
+                        <h2>Your Results</h2>
+                        <p>Based on your answers, your are an:</p>
+                        {/* <h2>{result.title}</h2> */}
+                      
+                      <br/>
+                      <img className="max-w-full w-[300px]  m-auto" src={result.image} alt={result.persona}/>
                     </div>
                 )}
             </form>
+        </div>
         </div>
     )
 }
