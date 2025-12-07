@@ -55,7 +55,7 @@ function RouteComponent() {
 
     return (
         <div className="height-screen flex items-center max-h-[100vh] bg-black bg-[url(/background-persona.png)] bg-no-repeat bg-cover h-screen">
-            <div className="max-w-[700px] m-auto p-[20px] border-solid text-white border-white border-2 rounded-lg align-middle bg-zinc-700">
+            <div className="max-w-[700px] m-auto p-[20px] border-solid text-white border-white border-2 rounded-lg align-middle bg-zinc-900">
                 <form>
                     {!showResults && (
                         <span>
@@ -116,12 +116,12 @@ function RouteComponent() {
 
                     {showResults && (
                         <div>
-                            <h2>Your Results</h2>
+                            <h3 className="">Your Results</h3>
                             <p>Based on your answers, your are an:</p>
                             <br />
                             <img className="max-w-full w-[300px] m-auto" src={result.image} alt={result.persona} />
 
-                            <a href={result.image} download>Download</a>
+                            <a className="my-[12px] inline-flex" href={result.image} download>Download</a>
                         </div>
                     )}
                 </form>
