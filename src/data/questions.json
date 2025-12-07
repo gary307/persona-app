@@ -1,0 +1,170 @@
+{
+    "questions": [
+    {
+        "question": {
+            "title": "A brand-new AI tool drops at work. You…",
+            "options": [
+                {
+                "group": "innovate",
+                "value": "Jump in immediately - buttons will be clicked"
+                },
+                {
+                "group": "automator",
+                "value": "Ask: “What does this replace so we do less work?"
+                },
+                {
+                "group": "creator",
+                "value": "Look for ways to make decks, docs, or stories cooler"
+                },
+                {
+                "group": "validator",
+                "value": "Ask for the data: accuracy, risk, ROI"
+                }
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "If AI worked perfectly in your role, what would change most?",
+            "options": [
+                {"group": "innovate",
+                "value": "I’d be experimenting and trying new approaches more often"
+                },
+                {"group": "automator",
+                "value": "I’d spend far less time on repetitive or manual work"
+                },
+                {"group": "creator",
+                "value": "My outputs would be clearer, more engaging, and more human"
+                },
+                {  
+                    "group": "validator",
+                    "value": "I’d feel more confident in decisions I make and recommend"
+              }
+                
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "How do you feel about experimenting with AI?",
+            "options": [
+                {"group": "innovate",
+                "value": "Love it - chaos is part of the process"
+                },
+                {"group": "automator",
+                "value": "Fine, as long as it leads to something repeatable"
+                },
+                {"group": "creator",
+                "value": "Inspired - play leads to better outcomes"
+                },
+                {  
+                    "group": "validator",
+                    "value": "Nervous until guardrails are in place"
+              }
+                
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "If AI were a coworker, it should be…",
+            "options": [
+                {"group": "innovate",
+                "value": "A mad scientist"
+                },
+                {"group": "automator",
+                "value": "A super-efficient operator"
+                },
+                {"group": "creator",
+                "value": "A creative partner"
+                },
+                {  
+                    "group": "validator",
+                    "value": "A trusted analyst"
+              }
+                
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "You’re given AI free-rein for a week. What do you build first?",
+            "options": [
+                {"group": "innovate",
+                "value": "Something new nobody asked for (yet)"
+                },
+                {"group": "automator",
+                "value": "A workflow that removes the boring stuff"
+                },
+                {"group": "creator",
+                "value": "Content or visuals people actually want to engage with"
+                },
+                {  
+                    "group": "validator",
+                    "value": "A model, forecast, or decision framework"
+              }
+                
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "What’s your biggest pet peeve?",
+            "options": [
+                {"group": "innovate",
+                "value": "“We’re being too cautious.”"
+                },
+                {"group": "automator",
+                "value": "“This isn’t integrated into how we actually work.”"
+                },
+                {"group": "creator",
+                "value": "“This feels soulless.”"
+                },
+                {  
+                    "group": "validator",
+                    "value": "“This isn’t proven.”"
+              }
+                
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "Which phrase feels most you?",
+            "options": [
+                {"group": "innovate",
+                "value": "“Let’s test it.”"
+                },
+                {"group": "automator",
+                "value": "“Let’s standardise it.”"
+                },
+                {"group": "creator",
+                "value": "“Let’s make it better.”"
+                },
+                {"group": "validator",
+                "value": "“Let’s validate it.”"
+            }
+            ]
+        }
+    },
+    {
+        "question": {
+            "title": "People usually come to you at work when they need…",
+            "options": [
+                {"group": "innovate",
+                "value": "Fresh ideas and new ways of thinking"
+                },
+                {"group": "automator",
+                "value": "Help simplifying or speeding something up"
+                },
+                {"group": "creator",
+                "value": "Help making something clearer or more compelling"
+                },
+                {"group": "validator",
+                "value": "Help deciding what’s really true or worth doing"
+            }
+            ]
+        }
+    }
+    ]
+}

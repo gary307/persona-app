@@ -1,0 +1,19 @@
+{
+"results": [{
+    "persona": "innovate",
+    "title": "AI innovative"
+},
+{
+    "persona": "automator",
+    "title": "AI automator"
+},
+{
+    "persona": "creator",
+    "title": "Creative"
+},
+{
+    "persona": "validator",
+    "title": "AI validator"
+}
+]   
+}
