@@ -1,10 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { useForm } from '@tanstack/react-form'
+import { useState } from 'react'
 
 import questions from '../../data/questions.json'
 import results from '../../data/results.json'
-
-import { useForm } from '@tanstack/react-form'
-import { useState } from 'react'
 
 export const Route = createFileRoute('/Questions/')({
     component: RouteComponent,
@@ -13,105 +12,118 @@ export const Route = createFileRoute('/Questions/')({
 function RouteComponent() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [showResults, setShowResults] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     const currentQuestion = questions?.questions[currentQuestionIndex]
     const form = useForm({
-        onSubmit: async () => {
-
-        },
+        onSubmit: async () => {},
     })
-    const currentFields = form.state.values;
+    const currentFields = form.state.values
 
     const getAnswersByGroup = questions?.questions.map((q, index) => {
-        const currentQuestion = currentFields[`question-${index}`];
-        const getQuestionGroup = q.question.options.find((option) => currentQuestion === option.value);
-        return getQuestionGroup?.group;
-    });
+        const currentQuestion = currentFields[`question-${index}`]
+        const getQuestionGroup = q.question.options.find((option) => currentQuestion === option.value)
+        return getQuestionGroup?.group
+    })
 
-    const getHighestGroup = getAnswersByGroup.reduce((acc, group) => {
-        if (!acc[group]) {
-            acc[group] = 0;
+    const getHighestGroup = getAnswersByGroup.reduce(
+        (acc, group) => {
+            if (!acc[group]) {
+                acc[group] = 0
+            }
+            acc[group]++
+            return acc
+        },
+        {} as Record<string, number>,
+    )
+
+    const highestGroup = Object.entries(getHighestGroup)?.sort((a, b) => b[1] - a[1])[0][0]
+    const result = results.results.find((r) => r.persona === highestGroup)
+
+    const onNextStep = async () => {
+        setError(null)
+
+        const currentAnswer = await form.state.values[`question-${currentQuestionIndex}`]
+
+        if (!currentAnswer) {
+            setError('Please select an answer before proceeding.')
+            return
         }
-        acc[group]++;
-        return acc;
-    }, {} as Record<string, number>)
 
-    const highestGroup = Object.entries(getHighestGroup)?.sort((a, b) => b[1] - a[1])[0][0];
-
-const result = results.results.find(r => r.persona === highestGroup);
+        setCurrentQuestionIndex(currentQuestionIndex + 1)
+    }
 
     return (
         <div className="height-screen flex items-center max-h-[100vh] bg-black bg-[url(/background-persona.png)] bg-no-repeat bg-cover h-screen">
-        <div className="max-w-[700px] m-auto p-[20px] border-solid border-black border-2 rounded-lg  align-middle bg-white">
-            <form
+            <div className="max-w-[700px] m-auto p-[20px] border-solid border-black border-2 rounded-lg align-middle bg-white">
+                <form>
+                    {!showResults && (
+                        <span>
+                            <form.Field
+                                name={`question-${currentQuestionIndex}`}
+                                children={(field) => (
+                                    <div className="mb-4 flex flex-col">
+                                        <h2>
+                                            {currentQuestionIndex + 1} . {currentQuestion.question.title}
+                                        </h2>
+                                        <fieldset className="flex flex-col">
+                                            {currentQuestion.question.options.map((option, index) => {
+                                                return (
+                                                    <span key={`option-${index}`} className="mb-2">
+                                                        <input
+                                                            type="radio"
+                                                            required
+                                                            key={index}
+                                                            name={`question-${currentQuestionIndex}`}
+                                                            value={option.value}
+                                                            checked={field.state.value === option.value}
+                                                            onChange={() => field.handleChange(option.value)}
+                                                        />
+                                                        <label htmlFor={option.value}>{option.value}</label>
+                                                    </span>
+                                                )
+                                            })}
 
-            >
-                {!showResults && (
-                    <span>
-                        <form.Field
-                            name={`question-${currentQuestionIndex}`}
-                            children={(field) => (
-                                <div className="mb-4 flex flex-col">
-                                    <h2>
-                                        {currentQuestionIndex + 1} . {currentQuestion.question.title}
-                                    </h2>
-                                    <fieldset className="flex flex-col">
-                                        {currentQuestion.question.options.map((option, index) => {
-                                            return (
-                                                <span key={`option-${index}`} className="mb-2">
-                                                    <input
-                                                        type="radio"
-                                                        key={index}
-                                                        name={`question-${currentQuestionIndex}`}
-                                                        value={option.value}
-                                                        checked={field.state.value === option.value}
-                                                        onChange={() => field.handleChange(option.value)}
-                                                    />
-                                                    <label htmlFor={option.value}>{option.value}</label>
-                                                </span>
-                                            )
-                                        })}
-                                    </fieldset>
-                                </div>
+                                            {error && <em role="alert">{error}</em>}
+                                        </fieldset>
+                                    </div>
+                                )}
+                            />
+
+                            {currentQuestionIndex !== 0 && (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setError(null)
+                                        setCurrentQuestionIndex(currentQuestionIndex - 1)
+                                    }}
+                                >
+                                    Prev
+                                </button>
                             )}
-                        />
 
-                        {currentQuestionIndex !== 0 && (
-                            <button
-                                type="button"
-                                onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
-                            >
-                                Prev
-                            </button>
-                        )}
+                            {currentQuestionIndex === questions.questions.length - 1 ? (
+                                <button type="button" onClick={() => setShowResults(true)}>
+                                    Submit
+                                </button>
+                            ) : (
+                                <button type="button" onClick={onNextStep}>
+                                    Next
+                                </button>
+                            )}
+                        </span>
+                    )}
 
-                        {currentQuestionIndex === questions.questions.length - 1 ? (
-                            <button type="button" onClick={() => setShowResults(true)}>
-                                Submit
-                            </button>
-                        ) : (
-                            <button
-                                type="button"
-                                onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
-                            >
-                                Next
-                            </button>
-                        )}
-                    </span>
-                )}
-
-                {showResults && (
-                    <div>
-                        <h2>Your Results</h2>
-                        <p>Based on your answers, your are an:</p>
-                        {/* <h2>{result.title}</h2> */}
-                      
-                      <br/>
-                      <img className="max-w-full w-[300px]  m-auto" src={result.image} alt={result.persona}/>
-                    </div>
-                )}
-            </form>
-        </div>
+                    {showResults && (
+                        <div>
+                            <h2>Your Results</h2>
+                            <p>Based on your answers, your are an:</p>
+                            <br />
+                            <img className="max-w-full w-[300px] m-auto" src={result.image} alt={result.persona} />
+                        </div>
+                    )}
+                </form>
+            </div>
         </div>
     )
 }

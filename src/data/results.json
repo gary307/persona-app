@@ -7,17 +7,17 @@
 {
     "persona": "automator",
     "title": "AI automator",
-    "image": "/innovator.png"
+    "image": "/automator.png"
 },
 {
     "persona": "creator",
     "title": "Creative",
-    "image": "/innovator.png"
+    "image": "/creator.png"
 },
 {
     "persona": "validator",
     "title": "AI validator",
-    "image": "/innovator.png"
+    "image": "/validator.png"
 }
 ]   
 }
